@@ -10,4 +10,4 @@ RUN apt install wget -y
 RUN apt install dos2unix -y
 COPY start.sh /tmp/buildAgent/start.sh
 RUN dos2unix /tmp/buildAgent/start.sh
-CMD ["bash","start.sh","${ORG}","{PAT}","{AGENTNAME}"]
+CMD ["bash","start.sh","${ORG}","${PAT}","${AGENTNAME}"]
