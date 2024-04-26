@@ -1,12 +1,16 @@
 #!/bin/bash
 name=$(cat /proc/sys/kernel/random/uuid | cut -c 1-6)
 
+ORG=$1
+PAT=$2
+AGENTNAME=$3
+
 echo "Settings vars"
-export VSTS_ACCOUNT="#ACCOUNT#"
-export VSTS_TOKEN="#PAT#"
-export VSTS_AGENT="CCH $name"
+export VSTS_ACCOUNT=$ORG
+export VSTS_TOKEN=$PAT
+export VSTS_AGENT=$AGENTNAME
 export VSTS_WORK="/tmp/agent" 
-export VSTS_POOL="aks-linux"
+export VSTS_POOL="self-hosted"
 export VSTS_AGENT_PATH=/tmp/buildAgent
 
 
