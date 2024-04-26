@@ -1,0 +1,18 @@
+docker build --build-arg ORG=your_organization_name \
+             --build-arg PAT=your_personal_access_token \
+             --build-arg AGENTNAME=your_agent_name \
+             .
+
+variables:
+  orgName: 'your_organization_name'  # Replace with actual organization name
+  pat: $(System.AccessToken)        # Use pre-defined system variable
+  agentName: 'my-self-hosted-agent' 
+
+- task: Docker@0  # Replace with the appropriate Docker task version
+  inputs:
+    imageName: '$(my-agent-image:latest)'  # Replace with your desired image name
+    context: .  # Build context (current directory)
+    buildArgs: |  # Multi-line string for build arguments
+      ORG=$(orgName)
+      PAT=$(pat)
+      AGENTNAME=$(agentName)
