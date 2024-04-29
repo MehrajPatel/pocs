@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: self-hosted-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: self-hosted-agent
+  template:
+    metadata:
+      labels:
+        app: self-hosted-agent
+    spec:
+      containers:
+      - name: self-hosted-agent
+        image: your-selfhostedagent-image:tag
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "0.5"
+            memory: "512Mi"
+        env:
+          - name: VSTS_ACCOUNT
+            value: "YourAzureDevOpsAccount"
+          - name: VSTS_POOL
+            value: "YourAgentPool"
+          # Add more environment variables as needed
+        # Add other container configurations as needed
